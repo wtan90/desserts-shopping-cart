@@ -21,12 +21,15 @@
 
 body {
   background-color: var(--dark-grey);
+  font-family: Arial, sans-serif; /* Improved readability */
+  color: var(--light-grey); /* Consistent text color */
 }
 
 .title {
-  color: var(--light-grey);
+  color: var(--golden-yellow); /* Make the title stand out */
   text-align: center;
   margin: 25px 0;
+  font-size: 2rem; /* Larger title */
 }
 
 #dessert-card-container {
@@ -34,29 +37,36 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  padding: 20px; /* Added padding for spacing */
 }
 
 .dessert-card {
   background-color: var(--light-grey);
-  padding: 15px;
+  padding: 20px; /* Increased padding */
   text-align: center;
   border-radius: 15px;
-  margin: 20px 10px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+  width: calc(100% - 40px); /* Ensure consistent width with padding */
 }
 
-.dessert-price {
+.dessert-price, .product-category {
   font-size: 1.2rem;
+  color: var(--grey); /* Slightly darker color for better contrast */
 }
 
 .btn {
   display: block;
   cursor: pointer;
-  width: 100px;
+  width: 100%;
+  padding: 10px; /* More clickable area */
   color: var(--dark-grey);
   background-color: var(--gold);
   background-image: linear-gradient(var(--golden-yellow), var(--orange));
-  border-color: var(--gold);
-  border-width: 3px;
+  border: none; /* Removed border for a cleaner look */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold; /* Emphasize button text */
+  margin-top: 15px; /* Consistent spacing */
 }
 
 .btn:hover {
@@ -64,53 +74,53 @@ body {
 }
 
 #cart-btn {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: fixed; /* Changed to fixed for consistent positioning */
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other content */
 }
 
 .add-to-cart-btn {
-  margin: 30px auto 10px;
+  margin: 10px auto;
 }
 
 #cart-container {
   display: none;
-  position: absolute;
-  top: 60px;
-  right: 0;
+  position: fixed; /* Consistent positioning */
+  top: 80px; /* Adjusted for visibility */
+  right: 20px;
   background-color: var(--light-grey);
-  width: 200px;
-  height: 400px;
-  border: 8px double var(--black);
+  width: 250px; /* Adjusted width */
+  padding: 15px; /* Inner spacing */
+  border: 3px solid var(--grey); /* Subtle border */
   border-radius: 15px;
   text-align: center;
-  font-size: 1.2rem;
-  overflow-y: scroll;
+  font-size: 1rem;
+  overflow-y: auto; /* Ensure content is scrollable */
+  z-index: 1000; /* Above other content */
 }
 
 .product {
-  margin: 25px 0;
+  margin: 20px 0;
 }
 
 .product-count {
   display: inline-block;
   margin-right: 10px;
-}
-
-.product-category {
-  margin: 10px 0;
+  font-weight: bold; /* Highlight count */
 }
 
 @media (min-width: 768px) {
   #dessert-card-container {
     flex-direction: row;
+    justify-content: center; /* Center cards for wider screens */
   }
 
   .dessert-card {
-    flex: 1 0 21%;
+    flex: 1 0 21%; /* Adjusted for screen size */
+    margin: 20px; /* Consistent margin */
   }
 
   #cart-container {
-    width: 300px;
-  }
-}
+    width: 300px; /* Larger cart on wider screens */
+   
