@@ -90,10 +90,10 @@ products.forEach(
     dessertCards.innerHTML += `
       <div class="dessert-card">
         <h2>${name}</h2>
-        <p class="dessert-price">$${price}</p>
-        <p class="product-category">Category: ${category}</p>
+        <p class="dessert-price">RM{price}</p>
+        <p class="product-category">Category: RM{category}</p>
         <button 
-          id="${id}" 
+          id="RM{id}" 
           class="btn add-to-cart-btn">Add to cart
         </button>
       </div>
@@ -119,16 +119,16 @@ class ShoppingCart {
     })
 
     const currentProductCount = totalCountPerProduct[product.id];
-    const currentProductCountSpan = document.getElementById(`product-count-for-id${id}`);
+    const currentProductCountSpan = document.getElementById(`product-count-for-idRM{id}`);
 
     currentProductCount > 1 
-      ? currentProductCountSpan.textContent = `${currentProductCount}x`
+      ? currentProductCountSpan.textContent = `RM{currentProductCount}x`
       : productsContainer.innerHTML += `
-      <div id=dessert${id} class="product">
+      <div id=dessertRM{id} class="product">
         <p>
-          <span class="product-count" id=product-count-for-id${id}></span>${name}
+          <span class="product-count" id=product-count-for-idRM{id}></span>RM{name}
         </p>
-        <p>${price}</p>
+        <p>RM{price}</p>
       </div>
       `;
   }
@@ -166,9 +166,9 @@ class ShoppingCart {
     const subTotal = this.items.reduce((total, item) => total + item.price, 0);
     const tax = this.calculateTaxes(subTotal);
     this.total = subTotal + tax;
-    cartSubTotal.textContent = `$${subTotal.toFixed(2)}`;
-    cartTaxes.textContent = `$${tax.toFixed(2)}`;
-    cartTotal.textContent = `$${this.total.toFixed(2)}`;
+    cartSubTotal.textContent = `RM{subTotal.toFixed(2)}`;
+    cartTaxes.textContent = `RM{tax.toFixed(2)}`;
+    cartTotal.textContent = `RM{this.total.toFixed(2)}`;
     return this.total;
   }
 };
