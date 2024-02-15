@@ -96,20 +96,29 @@ class ShoppingCart {
   }
 
   calculateTotal() {
-    const subTotal = this.items.reduce((total, item) => total + item.price
+    const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+    const tax = this.calculateTaxes(subTotal);
+    this.total = subTotal + tax;
+
+    cartSubTotal.textContent = `RM${subTotal.toFixed(2)}`;
+    cartTaxes.textContent = `RM${tax.toFixed(2)}`;
+    cartTotal.textContent = `RM${this.total.toFixed(2)}`;
+  }
+
+  updateCart() {
+    totalNumberOfItems.textContent = this.getCounts();
+    this.calculateTotal();
+  }
+}
 
 const cart = new ShoppingCart();
-const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
 
-[...addToCartBtns].forEach(
-  (btn) => {
-    btn.addEventListener("click", (event) => {
-      cart.addItem(Number(event.target.id), products);
-      totalNumberOfItems.textContent = cart.getCounts();
-      cart.calculateTotal();
-    })
-  }
-);
+Array.from(document.getElementsByClassName("add-to-cart-btn")).forEach(btn => {
+  btn.addEventListener("click", event => {
+    const id = Number(event.target.id);
+    cart.addItem(id, products);
+  });
+});
 
 cartBtn.addEventListener("click", () => {
   isCartShowing = !isCartShowing;
@@ -117,3 +126,4 @@ cartBtn.addEventListener("click", () => {
   cartContainer.style.display = isCartShowing ? "block" : "none";
 });
 
+clearCartBtn.addEventListener("click", () => cart.clearCart());
